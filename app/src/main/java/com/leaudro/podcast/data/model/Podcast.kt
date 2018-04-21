@@ -32,22 +32,3 @@ data class Podcast(val id: Long,
     }
 }
 
-data class Episode(val id: String) : Parcelable {
-    constructor(source: Parcel) : this(
-            source.readString()
-    )
-
-    override fun describeContents() = 0
-
-    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeString(id)
-    }
-
-    companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<Episode> = object : Parcelable.Creator<Episode> {
-            override fun createFromParcel(source: Parcel): Episode = Episode(source)
-            override fun newArray(size: Int): Array<Episode?> = arrayOfNulls(size)
-        }
-    }
-}
