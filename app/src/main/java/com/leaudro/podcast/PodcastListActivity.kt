@@ -1,12 +1,13 @@
 package com.leaudro.podcast
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import com.leaudro.podcast.data.DataSource
 import com.leaudro.podcast.data.FakeDataSource
 import com.leaudro.podcast.data.model.Podcast
-import com.leaudro.podcast.utils.showToast
+import com.leaudro.podcast.podcastdetails.PodcastDetailsActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -33,8 +34,10 @@ class PodcastListActivity : AppCompatActivity(), PodcastListView {
     }
 
     override fun showPodcastList(list: List<Podcast>) {
-        recyclerView.adapter = PodcastListAdapter(list, { _ ->
-            showToast("Test")
+        recyclerView.adapter = PodcastListAdapter(list, {
+            startActivity(Intent(this, PodcastDetailsActivity::class.java).apply {
+                putExtra(PodcastDetailsActivity.EXTRA_PODCAST, it)
+            })
         })
     }
 
