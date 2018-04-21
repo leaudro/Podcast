@@ -6,15 +6,8 @@ import io.reactivex.Observable
 class FakeDataSource : DataSource {
     override fun fetchPodcastList(): Observable<List<Podcast>> =
             Observable.just(listOf(
-                    Podcast("1"),
-                    Podcast("2"),
-                    Podcast("3"),
-                    Podcast("4"),
-                    Podcast("5"),
-                    Podcast("6"),
-                    Podcast("7"),
-                    Podcast("8"),
-                    Podcast("9"),
-                    Podcast("10")
+                    Podcast(1, "Brexit", "Very long subtitle talking about the podcast and it goes and goes and goes....", emptyList()),
+                    Podcast(2, "Flintoff Savage and the Ping Pong Guy", "Another very very long subtitle talking about the podcast and it goes and goes and goes....", emptyList()),
+                    Podcast(3, "The Listening", "yet another subtitle talking about the podcast and \nbreaking lines \nall the way", emptyList())
             ))
 }

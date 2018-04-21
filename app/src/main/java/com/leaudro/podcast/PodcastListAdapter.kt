@@ -9,18 +9,22 @@ import com.leaudro.podcast.utils.inflate
 
 class PodcastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    val textView by lazy { itemView.findViewById<TextView>(android.R.id.text1) }
+    private val titleTextView by lazy { itemView.findViewById<TextView>(R.id.text_title) }
+    private val subtitleTextView by lazy { itemView.findViewById<TextView>(R.id.text_subtitle) }
 
     fun bind(podcast: Podcast, listener: (Podcast) -> Unit) {
-        textView.text = podcast.id
-        itemView.setOnClickListener { listener(podcast) }
+        with (podcast) {
+            titleTextView.text = title
+            subtitleTextView.text = subtitle
+            itemView.setOnClickListener { listener(this) }
+        }
     }
 }
 
-class PodcastListAdapter(private val list: List<Podcast>, val listener: (Podcast) -> Unit) : RecyclerView.Adapter<PodcastViewHolder>() {
+class PodcastListAdapter(private val list: List<Podcast>, private val listener: (Podcast) -> Unit) : RecyclerView.Adapter<PodcastViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PodcastViewHolder =
-            PodcastViewHolder(parent.inflate(android.R.layout.activity_list_item))
+            PodcastViewHolder(parent.inflate(R.layout.podcast_list_item))
 
     override fun getItemCount(): Int = list.size
 
