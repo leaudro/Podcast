@@ -24,7 +24,7 @@ class EpisodeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 class EpisodesAdapter(private val list: List<Episode>, private val listener: (Episode) -> Unit) : RecyclerView.Adapter<EpisodeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder =
-            EpisodeViewHolder(parent.inflate(R.layout.podcast_list_item))
+            EpisodeViewHolder(parent.inflate(R.layout.episode_list_item))
 
     override fun getItemCount(): Int = list.size
 
